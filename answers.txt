@@ -1,0 +1,12 @@
+1. s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+2. client socket is active, it sends a connection request and waits for a response from server. server socket is passive, it waits for connection requests from clients, processes the requests and returns the reply
+
+3. Add socket.SO_REUSEADDR option when creating socket, like:
+   s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+
+4. The IP address and port number of the connected client.
+
+5. The data sent from the client, also the data need to be echo back. In this case, it is "Foobar".
+
+6.
