@@ -20,15 +20,15 @@ def get_remote_ip(host):
 
 
 def main():
-	# q6
-	extern_host = 'www.google.com'
-	extern_port = 80
+    # q6
+    extern_host = 'www.google.com'
+    extern_port = 80
 
-	#create socket
-	with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as proxy_start:
-		print("Starting proxy server")
-		#allow reused addresses, bind, and set to listening mode
-		proxy_start.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+    #create socket
+    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as proxy_start:
+        print("Starting proxy server")
+        #allow reused addresses, bind, and set to listening mode
+        proxy_start.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         proxy_start.bind((HOST, PORT))
         proxy_start.listen(1)
 

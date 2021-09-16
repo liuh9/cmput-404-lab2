@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 
 import socket
+from multiprocessing import Pool
 
-#define address and buffer size
 HOST = "localhost"
 PORT = 8001
 BUFFER_SIZE = 1024
@@ -11,8 +11,8 @@ BUFFER_SIZE = 1024
 payload = "GET / HTTP/1.0\r\nHost: www.google.com\r\n\r\n"
 
 def connect(addr):
-	#create socket, connect, and receive data
 	try:
+		#create socket, connect, and receive data, shutdown
 		s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 		s.connect(addr)
 		s.sendall(payload.encode())
@@ -28,7 +28,11 @@ def connect(addr):
 		s.close()
 
 def main():
-	connect((HOST, PORT))
+
+	address = [(HOST, PORT)]
+	#establish 3 fifferent connections
+	with Pool() as p:
+		p.map(connect, address * 3)
 
 if __name__ == "__main__":
 	main()
